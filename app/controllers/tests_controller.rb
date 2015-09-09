@@ -5,12 +5,14 @@ def start
 end
 
 def index
+	@tests = Test.all
 end
 
 def update
 end
 
 def destroy
+	redirect_to tests_path
 end
 
 def create

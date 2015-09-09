@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get 'tests/start'
     resources :sessions, only: [:create, :destroy, :index]
     resources :users
-    resources :tests, only: [:create, :destroy, :edit, :index]
+    resources :tests, only: [:create, :destroy, :edit, :index, :show]
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

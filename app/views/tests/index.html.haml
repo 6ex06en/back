@@ -1,1 +1,5 @@
-<h1>Много задач</h1>
+#all_tests_container
+	%ul
+		-@tests.each do |test|
+			%li.list_questions
+				=link_to(test.question, test_path(test))

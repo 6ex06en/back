@@ -27,6 +27,7 @@ describe "AuthenticationPages" do
         click_button "Submit"
       end
       it { is_expected.to have_content(user.name) }
+      it { is_expected.to have_selector('form.create_question_form') } 
       it { is_expected.to have_selector('.alert.alert-success') } 
       it { should_not have_link('SignUp', href: new_user_path) }
   end
