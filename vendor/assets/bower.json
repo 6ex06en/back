@@ -1,0 +1,11 @@
+{
+  "name": "dsl-generated dependencies",
+  "dependencies": {
+    "jquery": "latest",
+    "angular": "latest",
+    "restangular": "latest",
+    "ng.route": "latest"
+  },
+  "resolutions": {
+  }
+}

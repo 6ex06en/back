@@ -1,0 +1,4 @@
+asset 'jquery'
+asset 'angular'
+asset 'restangular'
+asset 'ng.route'
