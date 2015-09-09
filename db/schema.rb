@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150909133402) do
+ActiveRecord::Schema.define(version: 20150909184531) do
+
+  create_table "tests", force: :cascade do |t|
+    t.string   "question"
+    t.integer  "score"
+    t.text     "answers",    default: "--- []\n"
+    t.string   "typeinput"
+    t.integer  "checksum"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "tests", ["checksum"], name: "index_tests_on_checksum"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
