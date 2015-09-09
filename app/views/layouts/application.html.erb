@@ -10,7 +10,7 @@
 
 <div class="container-fluid">
   <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
+    <div class="flash alert alert-<%= key %>"><%= value %></div>
   <% end %>
   <div class="clearfix visible-xs-block visible-sm-block visible-md-block visible-lg-block"></div>
   <%= render "layouts/header" %>

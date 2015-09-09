@@ -3,6 +3,6 @@ window.fadeFlash = ->
   $(".alert-danger").fadeOut(2500)
 $(document).ready( ->
 	setTimeout(->
-		$(".alert").fadeOut(2500)
+		$(".flash").fadeOut(2500)
 	,1000)
 	)
