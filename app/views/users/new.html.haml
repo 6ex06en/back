@@ -11,10 +11,6 @@
         .col-sm-4
           =u.email_field :email, id: "inputEmail", class: "form-control", placeholder: "email"
       .form-group
-        =u.label "Confirmation e-mail", for: "inputEmail_confirm", class: "col-sm-4 control-label"
-        .col-sm-4
-          =u.email_field :email_confirmation, id: "inputEmail_confirm", class: "form-control", placeholder: "email confirm"
-      .form-group
         =u.label :Password, for: "inputPassword", class: "col-sm-4 control-label"
         .col-sm-4
           =u.password_field :password, id: "inputPassword", class: "form-control", placeholder: "password"
