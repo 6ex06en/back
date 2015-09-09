@@ -1,16 +1,30 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
+$link_color: #204D73;
+$header_background: rgb(45, 48, 44);
 
 .container-fluid {
-  background-color: rgb(45, 48, 44);
-  .header-logo {
-    color: white;
+  background: #BBB044;
+  color: $header_background;
+  a {
+    color: $link_color;
   }
+	header {
+    background-color: rgb(45, 48, 44);
+    margin: 20px -20px;
+    .header-logo {
+      color: white;
+    }
+  }  
 }
-.form_main_signin, #create_user_container, #signed_container {
+.main_link_signup {
+  float: right;
+}
+
+/*.form_main_signin, #create_user_container, #signed_container {
 	color: white;
-}
+}*/
+
 .flash {
 	margin: 2% 40%;
 	width: 20%;
