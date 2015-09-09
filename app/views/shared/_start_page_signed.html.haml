@@ -1,0 +1,59 @@
+-provide(:title) do 
+  -title = @current_user.name
+  -if @current_user.organization
+    -title = title + " | #{current_user.organization.name}"
+  -title
+#wrapper_signed_container
+  #signed_container      
+    -if @current_user.invited?
+      #calendar_wrapper.col-sm-5.col-md-5.col-lg-5.col-xs-5
+        #header_calendar.text-center
+          .btn-group
+            .btn-group
+              %button.btn.btn-success.dropdown-toggle.dropdown-togle-month(data-toggle="dropdown")<
+                %span.caret
+              .dropdown-menu.container-dropdown-month.text-center(role="menu")
+                .row.dropmenu-month.text-center
+                  %span.col-md-3.text-center.list-month Янв
+                  %span.col-md-3.text-center.list-month Фев
+                  %span.col-md-3.text-center.list-month Мар
+                  %span.col-md-3.text-center.list-month Апр
+                  %span.col-md-3.text-center.list-month Мар
+                  %span.col-md-3.text-center.list-month Июн
+                  %span.col-md-3.text-center.list-month Июл
+                  %span.col-md-3.text-center.list-month Авг
+                  %span.col-md-3.text-center.list-month Сен
+                  %span.col-md-3.text-center.list-month Окт
+                  %span.col-md-3.text-center.list-month Ноя
+                  %span.col-md-3.text-center.list-month Дек
+            .btn-group
+              %button.btn.btn-success.dropdown-toggle.dropdown-togle-year(data-toggle="dropdown")<
+                %span.caret  
+              .dropdown-menu.text-center.container-dropdown-year(role="menu")
+                .row.dropmenu-year.text-center
+                  %span.col-md-3.text-center.list-year 2015
+                  %span.col-md-3.text-center.list-year 2016
+                  %span.col-md-3.text-center.list-year 2017
+                  %span.col-md-3.text-center.list-year 2018 
+        #container_calendar
+      #content_wrapper.col-sm-7.col-md-7.col-lg-7.col-xs-7
+        #tasks_container
+          -if @render_task_form
+            =render 'tasks/task_form'
+          -if @render_edit_task
+            =render 'tasks/edit'
+          -if @render_tasks_of_day
+            =render 'tasks/tasks_of_day'
+          -if @render_all_tasks
+            =render 'tasks/index'
+          -if @render_task
+            =render 'tasks/task'
+        %div.errors_container
+          =render "shared/errors", object: @object_with_errors
+    -unless @current_user.invited?
+      .col-sm-12.col-md-12.col-lg-12.col-xs-12
+        %div(id="сontainer_create_org" class="col-md-12 col-lg-12 text-center")
+          %h3
+            =link_to "Создать организацию", new_organization_path, remote:true
+          %div
+            =render "shared/errors", object: @object_with_errors
