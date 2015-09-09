@@ -11,12 +11,12 @@ class SessionsController < ApplicationController
   		redirect_to root_path
   	else
   		flash.now[:danger] = "Invalid email or password"
-  		render "main_pages/start"
+  		render "tests/start"
   	end
   end
 
   def index
-    render "main_pages/start"
+    render "tests/start"
   end
 
   def destroy

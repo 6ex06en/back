@@ -1,0 +1,13 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+.container-fluid {
+  background-color: rgb(45, 48, 44);
+  .header-logo {
+    color: white;
+  }
+}
+.form_main_signin, #create_user_container {
+	color: white;
+}
