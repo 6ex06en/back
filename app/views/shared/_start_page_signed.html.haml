@@ -14,11 +14,11 @@
         .col-sm-5.col-md-5.col-lg-5
           =f.select(:typeinput, "<option>textInput</option><option>checkboxInput</option><option>radioButton</option>".html_safe, {prompt: "Выберите"}, {id: "type_input", class: "form-control"})
       .form-group.one_answer
-        =f.label "Ответ на вопрос", for: "answers_input", class: "control-label col-sm-2 col-md-2 col-lg-2"
+        =f.label "Правильный ответ", for: "answers_input", class: "control-label col-sm-2 col-md-2 col-lg-2"
         .col-sm-5.col-md-5.col-lg-5
           =f.text_field :answers, id: "answers_input", class: "form-control", placeholder: "Введите ответ на вопрос"
       .form-group.multiple_answers
-        =f.label "Ответ на вопросы", for: "answers_input", class: "control-label col-sm-2 col-md-2 col-lg-2"
+        =f.label "Ответы на вопрос", for: "answers_input", class: "control-label col-sm-2 col-md-2 col-lg-2"
         .col-sm-5.col-md-5.col-lg-5
           =f.text_field :answers, as: :array, id: "answers_input", class: "form-control", placeholder: "Напишите варианты ответа на вопрос через запятую"
       .form-group

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "start page",js:true do
+describe "start page" do
 	let(:user) {FactoryGirl.create(:user)}
 	before do
 		visit root_path

@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :test do
-    question "1+1"
+    question "100 % 10"
     score 100
     typeinput "radioButton"
     answers [1,2,3]
