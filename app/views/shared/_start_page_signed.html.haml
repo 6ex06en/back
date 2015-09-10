@@ -28,6 +28,7 @@
           =f.submit "Создать вопрос", class: "btn btn-primary form-control"
         .col-sm-2.col-md-2.col-lg-2
           =link_to("К списку вопросов", tests_path, class: "btn btn-primary")
+      =@params
   :coffee
     $(document).ready( ->
       $("#type_input").change( ->

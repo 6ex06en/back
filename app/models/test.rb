@@ -3,7 +3,8 @@ class Test < ActiveRecord::Base
 	validates :question, presence:true, length: {maximum: 800, minimum: 3}, uniqueness: { case_sensitive: false }
 	validates :typeinput, presence:true,length: {maximum: 20, minimum: 5}, inclusion: {in: %w(textInput checkboxInput radioButton)}
 	validates :score, presence:true, length: {minimum: 1}, numericality: { greater_than: 0 }
-	# validates :answers, presence:true, :if => Proc.new{|x| x.typeinput != "textInput"}
+	validates :answers, presence:true, :if => Proc.new{|x| x.typeinput != "textInput"}
+	# validates :answers, :presence => true, :unless => Proc.new { |x| x.answers.is_a?(Array) && x.answers.empty? }
 	before_create :create_checksum
 
 	private
@@ -19,4 +20,5 @@ class Test < ActiveRecord::Base
 		end
 		self.checksum = rand 
 	end 
+
 end

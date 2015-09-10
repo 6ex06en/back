@@ -16,15 +16,7 @@ def destroy
 end
 
 def create
-	@params = ActionController::Parameters.new({
-		test: {
-			answers: merge_params(params[:test]),
-			score: params[:test][:score],
-			question: params[:test][:question],
-			typeinput: params[:test][:typeinput]
-			}
-	})
-	# render text: @params
+	params[:test][:answers] = merge_params(params[:test])
 	@test = Test.new(test_params)
 	if @test.save
 		redirect_to root_path
@@ -38,7 +30,7 @@ end
 private
 
 def test_params
-	@params.require(:test).permit(:question, :answers, :typeinput, :score)
+	params.require(:test).permit(:question, :typeinput, :score, answers: ["A", "B", "C", "D", "E", "F"])
 end
 
 end
