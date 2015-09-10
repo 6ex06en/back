@@ -17,20 +17,21 @@ end
 
 def create
 	params[:test][:answers] = merge_params(params[:test])
-	@test = Test.new(test_params)
-	if @test.save
-		redirect_to root_path
-		flash[:success] = "Вопрос теста создан"
-	else
-		@object_with_errors = @test
-		render 'start'
-	end
+	render text: params[:test]
+	# @test = Test.new(test_params)
+	# if @test.save
+	# 	redirect_to root_path
+	# 	flash[:success] = "Вопрос теста создан"
+	# else
+	# 	@object_with_errors = @test
+	# 	render 'start'
+	# end
 end
 
 private
 
 def test_params
-	params.require(:test).permit(:question, :typeinput, :score, answers: ["A", "B", "C", "D", "E", "F"])
+	params.require(:test).permit(:question, :typeinput, :score, :right_question, answers: ["A", "B", "C", "D", "E", "F"])
 end
 
 end

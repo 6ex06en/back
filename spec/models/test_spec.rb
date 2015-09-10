@@ -7,7 +7,8 @@ RSpec.describe Test, type: :model do
 	it{is_expected.to respond_to(:checksum)}
 	it{is_expected.to respond_to(:answers)}
 	it{is_expected.to respond_to(:typeinput)}
-
+	it{is_expected.to respond_to(:right_answer)}
+	
 	it "before_create #create_checksum" do
 		test = Test.create(question: "1+1", score: 1, typeinput: "textInput")
 		expect(test).to be_valid

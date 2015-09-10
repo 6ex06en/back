@@ -25,8 +25,13 @@ window.build_answers =  ->
     start_answer =  String.fromCharCode(start_answer.charCodeAt(0) + 1) if delete_answer.length == 0 
     delete_answer.shift() if delete_answer.length > 0 
 
-    $(".glyphicon-ok").click( ->
+    $(".multiple_answers:not(:first) .glyphicon-ok").click( ->
       $(this).parent().toggleClass("has-success")
+      name = $(this).prev().attr('name').slice(-2, -1).toUpperCase()
+      if $(this).parent().hasClass("has-success")
+        $(this).parent().append("<input type='hidden' name='test[right_" + name + "]'value='"+name+"'></input>")
+      else
+        $(this).parent().find("input[type='hidden']").remove()
     )
 
     $(delete_span).click( ->
@@ -38,7 +43,7 @@ window.build_answers =  ->
     )
     $(add_span).click( ->
        # start_answer =  String.fromCharCode(start_answer.charCodeAt(0) + 1)
-      $(".glyphicon-ok").off("click")      
+      $(".multiple_answers:not(:first) .glyphicon-ok").off("click")      
       create_container()
     )
 window.answers = build_answers()
