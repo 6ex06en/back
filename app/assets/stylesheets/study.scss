@@ -21,11 +21,26 @@ $header_background: rgb(45, 48, 44);
   float: right;
 }
 
-/*.form_main_signin, #create_user_container, #signed_container {
-	color: white;
-}*/
+.multiple_answers .input-group {
+  padding: 0 15px;
+  float: left;
+  .glyphicon {   
+    top: 0;
+  }
+}
 
 .flash {
 	margin: 2% 40%;
 	width: 20%;
+}
+.glyphicon-circle-arrow-down, .glyphicon-remove {
+  font-size: 1.55em;
+  top: 5px;
+  margin-right: 5px;
+}
+.glyphicon-ok {
+  &:hover {
+    background:green;
+    color: white;
+  }
 }
