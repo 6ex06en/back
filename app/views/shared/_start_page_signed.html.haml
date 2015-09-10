@@ -18,9 +18,11 @@
         .col-sm-5.col-md-5.col-lg-5
           =f.text_field :answers, id: "answers_input", class: "form-control", placeholder: "Введите ответ на вопрос"
       .form-group.multiple_answers
-        =f.label "Ответы на вопрос", for: "answers_input", class: "control-label col-sm-2 col-md-2 col-lg-2"
+        =f.label "a", for: "answer_a", class: "control-label col-sm-2 col-md-2 col-lg-2"
         .col-sm-5.col-md-5.col-lg-5
-          =f.text_field :answers, as: :array, id: "answers_input", class: "form-control", placeholder: "Напишите варианты ответа на вопрос через запятую"
+          %input{id: "answer_a", class: "form-control", name: "test[answer_a]", placeholder: "Напишите ответ"}
+        .col-sm-1.col-md-1.col-lg-1
+          %span.glyphicon.glyphicon-circle-arrow-down.add_question_container{onclick: "answers()"}
       .form-group
         .col-sm-offset-2.col-md-offset-2.col-lg-offset-2.col-sm-2.col-md-2.col-lg-2
           =f.submit "Создать вопрос", class: "btn btn-primary form-control"
@@ -30,7 +32,7 @@
     $(document).ready( ->
       $("#type_input").change( ->
         $(".multiple_answers, .one_answer").addClass("hidden").removeClass("visible")
-        $(".multiple_answers").toggleClass("hidden visible") if $("#type_input option:selected").text() != "textInput"
+        $(".multiple_answers").toggleClass("hidden visible") if $("#type_input option:selected").text() == "checkboxInput" || $("#type_input option:selected").text() == "radioButton"
         $(".one_answer").toggleClass("hidden visible ") if $("#type_input option:selected").text() == "textInput"
       )
       $(".multiple_answers, .one_answer").addClass("hidden")
