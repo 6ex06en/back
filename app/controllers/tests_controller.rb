@@ -12,26 +12,30 @@ def update
 end
 
 def destroy
+	@test = Test.find_by_id(params[:id]).destroy
+	flash[:success] = "Вопрос удален"
 	redirect_to tests_path
 end
 
 def create
-	params[:test][:answers] = merge_params(params[:test])
-	render text: params[:test]
-	# @test = Test.new(test_params)
-	# if @test.save
-	# 	redirect_to root_path
-	# 	flash[:success] = "Вопрос теста создан"
-	# else
-	# 	@object_with_errors = @test
-	# 	render 'start'
-	# end
+	params[:test][:answers] = merge_params(params[:test], :answers)
+	params[:test][:right_answer] = merge_params(params[:test], :right_answer)
+	# render text: params[:test]
+	@test = Test.new(test_params)
+	if @test.save
+		redirect_to root_path
+		flash[:success] = "Вопрос теста создан"
+	else
+		@object_with_errors = @test
+		render 'start'
+	end
 end
 
 private
 
 def test_params
-	params.require(:test).permit(:question, :typeinput, :score, :right_question, answers: ["A", "B", "C", "D", "E", "F"])
+	params.require(:test).permit(:question, :typeinput, :score, :right_question, answers: ["A", "B", "C", "D", "E", "F"], 
+		right_answer: [])
 end
 
 end

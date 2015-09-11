@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150910172758) do
+ActiveRecord::Schema.define(version: 20150911064138) do
 
   create_table "tests", force: :cascade do |t|
     t.string   "question"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20150910172758) do
     t.integer  "checksum"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
-    t.string   "right_answer"
+    t.text     "right_answer", default: "--- []\n"
   end
 
   add_index "tests", ["checksum"], name: "index_tests_on_checksum"
