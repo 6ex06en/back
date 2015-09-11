@@ -1,8 +1,6 @@
 window.build_answers = (build, answers, right_answer) ->
   start_answer = "B"
   delete_answer = []
-  # answers = answers.split(",")
-  # right_answer = right_answer.split(",")
   getChar = ->
     if delete_answer.length > 0
      ch = delete_answer[0] 
@@ -15,10 +13,14 @@ window.build_answers = (build, answers, right_answer) ->
     start_char = ''
     for obj in answers
       for key of obj
-        if key == "A" and right_answer[0] == "A"
-          $(".one_answer").children().last().addClass("has-success")
-        $(".one_answer").find("input[type='text']").val(obj[key])
-        $(".one_answer").children().last().append("<input type='hidden' name='test[right_" + "A" + "]'value='"+"A"+"'></input>")
+        $(".one_answer").children().last().addClass("has-success") if key == "A" and right_answer[0] == "A" and answers.length == 1
+        $(".multiple_answers .input-group").addClass("has-success") if key == "A" and right_answer[0] == "A" and answers.length > 1
+        if answers.length == 1 and key == "A"
+          $(".one_answer").find("input[type='text']").val(obj[key])
+          $(".one_answer").children().last().append("<input type='hidden' name='test[right_" + "A" + "]'value='"+"A"+"'></input>") 
+        if answers.length > 1 and key == "A"
+          $(".multiple_answers #answer_a").val(obj[key])
+          $(".multiple_answers .input-group").append("<input type='hidden' name='test[right_" + "A" + "]'value='"+"A"+"'></input>")        
         continue if key == "A"
         $(".multiple_answers").last().after($("<div/>", {class: "form-group multiple_answers"}))
         container = $(".multiple_answers").last()
@@ -38,7 +40,7 @@ window.build_answers = (build, answers, right_answer) ->
             name = container.find("label").first().text()
             inner_container.append("<input type='hidden' name='test[right_" + name + "]'value='"+name+"'></input>")
         )
-        start_char = String.fromCharCode(obj[key].charCodeAt(0) + 1)
+        start_char = String.fromCharCode(key.charCodeAt(0) + 1)
 
     $(".multiple_answers .glyphicon-ok").click( ->
       $(this).parent().toggleClass("has-success")
@@ -50,7 +52,7 @@ window.build_answers = (build, answers, right_answer) ->
     )
 
     $(".delete-x").click( ->
-      delete_answer.push($(this).attr("question"))
+      delete_answer.push($(this).attr("question").toUpperCase())
       container.remove()
       $(".add_question_container:last").removeClass("hidden")
     )
@@ -76,6 +78,7 @@ window.build_answers = (build, answers, right_answer) ->
   rebuild(answers, right_answer) if build == true
     
   create_container = (start_char)->
+    start_answer = start_char if start_char != undefined
     delete_answer.sort()
     $(".add_question_container").addClass('hidden')
     $(".multiple_answers").last().after($("<div/>", {class: "form-group multiple_answers"}))
