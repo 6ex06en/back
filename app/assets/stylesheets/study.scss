@@ -4,6 +4,7 @@ $link_color: #204D73;
 $header_background: rgb(45, 48, 44);
 
 .container-fluid {
+  min-height: 800px;
   background: #BBB044;
   color: $header_background;
   a {
@@ -16,6 +17,12 @@ $header_background: rgb(45, 48, 44);
       color: white;
     }
   }  
+}
+.test_question_container {
+  padding-left: 0;
+  form {
+    margin-left: -15px;
+  }
 }
 .main_link_signup {
   float: right;
@@ -30,7 +37,9 @@ $header_background: rgb(45, 48, 44);
 }
 
 .flash {
-	margin: 2% 40%;
+  position: absolute;
+  top: 28px;
+	margin-left: 100px;
 	width: 20%;
 }
 .glyphicon-circle-arrow-down, .glyphicon-remove {
@@ -43,4 +52,10 @@ $header_background: rgb(45, 48, 44);
     background:green;
     color: white;
   }
+}
+.list_remove_answer {
+  position: absolute;
+  right:0;
+  font-size: 1.3em;
+  top: 15px;
 }

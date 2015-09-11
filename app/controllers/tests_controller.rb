@@ -11,6 +11,12 @@ end
 def update
 end
 
+def edit
+	@test = Test.find_by_id(params[:id])
+	@answers = @test.answers
+	@right_answer = @test.right_answer
+end
+
 def destroy
 	@test = Test.find_by_id(params[:id]).destroy
 	flash[:success] = "Вопрос удален"
@@ -26,6 +32,7 @@ def create
 		redirect_to root_path
 		flash[:success] = "Вопрос теста создан"
 	else
+		@test[:answers] = @test[:right_answer] = nil
 		@object_with_errors = @test
 		render 'start'
 	end

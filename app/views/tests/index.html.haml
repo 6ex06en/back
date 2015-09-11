@@ -1,5 +1,7 @@
-#all_tests_container
-	%ul
-		-@tests.each do |test|
-			%li.list_questions
-				=link_to(test.question, test_path(test))
+#all_tests_container.col-sm-7.col-md-7.col-lg-7
+  %ul.list-group
+    -@tests.each do |test|
+      %li.list-group-item.list_questions.col-sm-10.col-md-10.col-lg-10
+        =link_to(test.question, edit_test_path(test))
+        =link_to(test_path(test), method: :delete) do
+          %span.glyphicon.glyphicon-remove.list_remove_answer

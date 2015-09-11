@@ -29,12 +29,15 @@
         .col-sm-2.col-md-2.col-lg-2
           =link_to("К списку вопросов", tests_path, class: "btn btn-primary")
   :coffee
-    $(document).ready( ->
-      $("#type_input").change( ->
-        $(".multiple_answers, .one_answer").addClass("hidden").removeClass("visible")
-        $(".multiple_answers").toggleClass("hidden visible") if $("#type_input option:selected").text() == "checkboxInput" || $("#type_input option:selected").text() == "radioButton"
-        $(".one_answer").toggleClass("hidden visible ") if $("#type_input option:selected").text() == "textInput"
-      )
-      $(".multiple_answers, .one_answer").addClass("hidden")
+    $(".multiple_answers, .one_answer").addClass("hidden")
+    $('#type_input option').each( ->
+      if($(this).val() == "#{@test.typeinput}")
+        $(this).prop("selected", true)
     )
+  :javascript
+    var answers;
+    var right_answer;
+      answers=#{@answers.to_json}
+      right_answer=#{@right_answer.to_json}
+    build_answers(true, answers, right_answer) 
   =render "shared/errors", object: @object_with_errors

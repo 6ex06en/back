@@ -6,7 +6,7 @@ module TestsHelper
 		if option == :answers
 			if params[:typeinput] != "textInput"
 				x = "b"		
-				ar << {"A" => params[:answer_a].to_i}
+				ar << {"A" => (params[:answer_a].present?) ? params[:answer_a].to_i : nil}
 				while start < params.length
 					sym = "answer_#{x}".to_sym
 					ar << {x.upcase => params[sym].to_i} if params[sym]
