@@ -1,11 +1,11 @@
 FactoryGirl.define do
 
   factory :test do
-    question "25 / 5"
+    sequence(:question) {|x| "25 + #{x}"}
     score 100
     typeinput "textInput"
     right_answer ['A']
-    answers [{"A" => "5"}]
+    sequence(:answers) {|x| [{"A" => 25+x}] }
   end
 
   factory :user do

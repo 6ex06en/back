@@ -1,4 +1,5 @@
 class TestsController < ApplicationController
+# before_action :signed_in_user
 
 def start
 	@test = Test.new
