@@ -9,8 +9,9 @@ RSpec.describe TestsController, type: :controller do
 
 	 describe "POST #create" do
 	 	it "return http success" do
-	 		post :create, test: {question: test.question, score: test.score, answers: test.answers, typeinput: test.typeinput}
-	 		expect(response).to have_http_status(:redirect)
+	 		post :create, test: {question: test.question, score: test.score, answers: test.answers, 
+	 			typeinput: test.typeinput, right_answer: test.right_answer}
+	 		expect(response).to have_http_status(:success)
 	 	end
 	 end
 

@@ -8,7 +8,7 @@ $header_background: rgb(45, 48, 44);
   background: #BBB044;
   color: $header_background;
   a {
-    color: $link_color;
+    /*color: $link_color;*/
   }
 	header {
     background-color: rgb(45, 48, 44);
@@ -22,7 +22,13 @@ $header_background: rgb(45, 48, 44);
   padding-left: 0;
   form {
     margin-left: -15px;
+    .last-button {
+      margin-left: 40px;
+    }
   }
+}
+.index {
+  margin-top:  10px;
 }
 .main_link_signup {
   float: right;

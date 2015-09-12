@@ -1,33 +1,35 @@
 #signed_container
   .test_question_container.col-sm-12.col-md-12-col-lg-12
-    =form_for(@test, html: {class: "form-horizontal create_question_form", role: "form"}) do |f|
-      .form-group
-        =f.label "Вопрос", for: "question_input", class: "control-label col-sm-2 col-md-2 col-lg-2"
-        .col-sm-5.col-md-5.col-lg-5
-          =f.text_field :question, id: "question_input", class: "form-control", placeholder: "Напишите вопрос"
-      .form-group
-        =f.label "Баллы", for: "score_input", class: "control-label col-sm-2 col-md-2 col-lg-2"
-        .col-sm-5.col-md-5.col-lg-5
-          =f.text_field :score, id: "score_input", class: "form-control", placeholder: "Баллы за верный ответ"
-      .form-group
-        =f.label "Тип ввода ответа", for: "type_input", class: "control-label col-sm-2 col-md-2 col-lg-2"
-        .col-sm-5.col-md-5.col-lg-5
-          =f.select(:typeinput, "<option>textInput</option><option>checkboxInput</option><option>radioButton</option>".html_safe, {prompt: "Выберите"}, {id: "type_input", class: "form-control"})
-      .form-group.one_answer
-        =f.label "Правильный ответ", for: "answers_input", class: "control-label col-sm-2 col-md-2 col-lg-2"
-        .col-sm-5.col-md-5.col-lg-5
-          =f.text_field :answers, id: "answers_input", class: "form-control", placeholder: "Введите ответ на вопрос"
-      .form-group.multiple_answers
-        =f.label "a", for: "answer_a", class: "control-label col-sm-2 col-md-2 col-lg-2"
-        .col-sm-5.col-md-5.col-lg-5.input-group
-          %input{id: "answer_a", class: "form-control", name: "test[answer_a]", placeholder: "Варианты ответа"}
-          %span.input-group-addon.glyphicon.glyphicon-ok{title: "Пометить как верный"}
-        %span.glyphicon.glyphicon-circle-arrow-down.add_question_container{onclick: "answers()"}
-      .form-group
-        .col-sm-offset-2.col-md-offset-2.col-lg-offset-2.col-sm-2.col-md-2.col-lg-2
-          =f.submit "Создать вопрос", class: "btn btn-primary form-control"
-        .col-sm-2.col-md-2.col-lg-2
-          =link_to("К списку вопросов", tests_path, class: "btn btn-primary")
+    %h3.col-sm-4.col-md-4.col-lg-4.col-sm-offset-3.col-md-offset-3.col-lg-offset-3.header_forms Создать вопрос для теста
+    .form_wrapper.col-sm-12.col-md-12.col-lg-12
+      =form_for(@test, html: {class: "form-horizontal create_question_form", role: "form"}) do |f|
+        .form-group
+          =f.label "Вопрос", for: "question_input", class: "control-label col-sm-2 col-md-2 col-lg-2"
+          .col-sm-5.col-md-5.col-lg-5
+            =f.text_field :question, id: "question_input", class: "form-control", placeholder: "Напишите вопрос"
+        .form-group
+          =f.label "Баллы", for: "score_input", class: "control-label col-sm-2 col-md-2 col-lg-2"
+          .col-sm-5.col-md-5.col-lg-5
+            =f.text_field :score, id: "score_input", class: "form-control", placeholder: "Баллы за верный ответ"
+        .form-group
+          =f.label "Тип ответа", for: "type_input", class: "control-label col-sm-2 col-md-2 col-lg-2"
+          .col-sm-5.col-md-5.col-lg-5
+            =f.select(:typeinput, "<option>textInput</option><option>checkboxInput</option><option>radioButton</option>".html_safe, {prompt: "Выберите"}, {id: "type_input", class: "form-control"})
+        .form-group.one_answer
+          =f.label "Правильный ответ", for: "answers_input", class: "control-label col-sm-2 col-md-2 col-lg-2"
+          .col-sm-5.col-md-5.col-lg-5
+            =f.text_field :answers, id: "answers_input", class: "form-control", placeholder: "Введите ответ на вопрос"
+        .form-group.multiple_answers
+          =f.label "A", for: "answer_a", class: "control-label col-sm-2 col-md-2 col-lg-2"
+          .col-sm-5.col-md-5.col-lg-5.input-group
+            %input{id: "answer_a", class: "form-control", name: "test[answer_a]", placeholder: "Варианты ответа"}
+            %span.input-group-addon.glyphicon.glyphicon-ok{title: "Пометить как верный"}
+          %span.glyphicon.glyphicon-circle-arrow-down.add_question_container{onclick: "answers.create_container()"}
+        .form-group
+          .col-sm-offset-2.col-md-offset-2.col-lg-offset-2.col-sm-2.col-md-2.col-lg-2
+            =f.submit "Создать вопрос", class: "btn btn-primary form-control"
+          .col-sm-1.col-md-1.col-lg-1
+            =link_to("Все вопросы", tests_path, class: "btn btn-primary")
   :coffee
     $(document).ready( ->
       $("#type_input").change( ->

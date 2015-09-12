@@ -1,10 +1,11 @@
 FactoryGirl.define do
 
   factory :test do
-    question "100 % 10"
+    question "25 / 5"
     score 100
-    typeinput "radioButton"
-    answers [1,2,3]
+    typeinput "textInput"
+    right_answer ['A']
+    answers [{"A" => "5"}]
   end
 
   factory :user do
