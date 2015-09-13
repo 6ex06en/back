@@ -23,6 +23,17 @@ class Test < ActiveRecord::Base
 			end
 		end
 		self.checksum = rand 
+	end
+ 
+	def self.check_answers(answers)
+		result = {}
+		answers.each do |answer|
+			if question = Test.find_by_checksum(answer[:checksum])
+				result[answer[:checksum]] = {right: question.right_answer, your: answer[:answers], question: answer[:question]}
+				result[answer[:checksum]][:score] = question.score if answer[:answers].sort == question.right_answer.sort
+			end
+		end
+		result
 	end 
 
 end

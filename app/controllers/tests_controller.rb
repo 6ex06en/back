@@ -38,8 +38,6 @@ end
 def create
 	params[:test][:answers] = merge_params(params[:test], :answers)
 	params[:test][:right_answer] = merge_params(params[:test], :right_answer)
-	# render text: params[:test]
-	# render text: test_params
 	@test = Test.new(test_params)
 	if @test.save
 		redirect_to root_path
@@ -48,6 +46,20 @@ def create
 		@test[:answers] = @test[:right_answer] = nil
 		@object_with_errors = @test
 		render 'start'
+	end
+end
+
+def get_tests
+	respond_to do |format|
+		format.json {render json: Test.all.select(:id, :checksum, :typeinput, :answers)}
+	end
+end
+
+def check_answers
+	respond_to do |format|
+		format.json do 
+			render json: Test.check_answers(params[:tests])
+		end
 	end
 end
 
