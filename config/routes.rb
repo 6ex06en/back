@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # root 'welcome#index'
     root "tests#start"
     get 'tests/start'
+    get 'get_tests' => "tests#get_tests"
     resources :sessions, only: [:create, :destroy, :index]
     resources :users
     resources :tests, only: [:create, :destroy, :edit, :index, :show, :update]
