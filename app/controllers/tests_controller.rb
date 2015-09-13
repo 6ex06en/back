@@ -1,5 +1,5 @@
 class TestsController < ApplicationController
-# before_action :signed_in_user
+before_action :signed_in_user, except: [:start]
 
 def start
 	@test = Test.new
@@ -10,6 +10,17 @@ def index
 end
 
 def update
+	@test = Test.find_by_checksum(params[:test][:checksum])
+	params[:test][:answers] = merge_params(params[:test], :answers)
+	params[:test][:right_answer] = merge_params(params[:test], :right_answer)
+	if @test.update_attributes(test_params)
+		flash[:success] = "Вопрос обновлен"
+		redirect_to tests_path
+	else
+		@test[:answers] = @test[:right_answer] = nil
+		@object_with_errors = @test
+		render "edit"
+	end
 end
 
 def edit

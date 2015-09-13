@@ -10,16 +10,10 @@ window.build_answers = ->
     ch
   @rebuild = (answers, right_answer) ->
     self = this
-    $(".multiple_answers").removeClass("hidden") if answers.length > 1
-    $(".one_answer").removeClass("hidden") if answers.length == 1
     
     for obj in answers
       for key of obj
-        $(".one_answer").children().last().addClass("has-success") if key == "A" and right_answer[0] == "A" and answers.length == 1
         $(".multiple_answers .input-group").addClass("has-success") if key == "A" and right_answer[0] == "A" and answers.length > 1
-        if answers.length == 1 and key == "A"
-          $(".one_answer").find("input[type='text']").val(obj[key])
-          $(".one_answer").children().last().append("<input type='hidden' name='test[right_" + "A" + "]'value='"+"A"+"'></input>") 
         if answers.length > 1 and key == "A"
           $(".multiple_answers #answer_a").val(obj[key])
           $(".multiple_answers .input-group").append("<input type='hidden' name='test[right_" + "A" + "]'value='"+"A"+"'></input>")        
@@ -67,7 +61,6 @@ window.build_answers = ->
     $(".add_question_container").addClass('hidden')
     $(".add_question_container:last").removeClass("hidden")
     $(".multiple_answers").removeClass("hidden") if answers.length > 1
-    $(".one_answer").removeClass("hidden") if answers.length == 1
     $(document).ready( ->
       $("#type_input").change( ->
         $(".multiple_answers, .one_answer").addClass("hidden").removeClass("visible")

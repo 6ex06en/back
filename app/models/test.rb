@@ -2,9 +2,10 @@ class Test < ActiveRecord::Base
 	serialize :answers, Array
 	serialize :right_answer, Array
 	validates :question, presence:true, length: {maximum: 800, minimum: 3}, uniqueness: { case_sensitive: false }
-	validates :typeinput, presence:true,length: {maximum: 20, minimum: 5}, inclusion: {in: %w(textInput checkboxInput radioButton)}
+	validates :typeinput, presence:true, inclusion: {in: %w(textInput checkboxInput radioButton)}
 	validates :score, presence:true, length: {minimum: 1}, numericality: { greater_than: 0 }
 	validates :answers, presence:true
+	validates :answers, presence:true, length: {minimum: 2}, :if => Proc.new{|x| x.typeinput != 'textInput'}
 	validates_with AnswersValidator
 	validates :right_answer, presence:true, length: {maximum: 1, message: "should be one"}, :if => Proc.new{|x| x.typeinput != "checkboxInput"}
 	validates :right_answer, presence:true, length: {minimum: 1}, :if => Proc.new{|x| x.typeinput == "checkboxInput"}

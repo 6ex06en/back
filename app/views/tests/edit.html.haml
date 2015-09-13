@@ -4,6 +4,7 @@
     .form_wrapper.col-sm-12.col-md-12.col-lg-12
       =form_for(@test, html: {class: "form-horizontal create_question_form", role: "form"}) do |f|
         .form-group
+          =f.hidden_field :checksum
           =f.label "Вопрос", for: "question_input", class: "control-label col-sm-2 col-md-2 col-lg-2"
           .col-sm-5.col-md-5.col-lg-5
             =f.text_field :question, id: "question_input", class: "form-control", placeholder: "Напишите вопрос"
@@ -35,9 +36,13 @@
   :coffee
     $(".multiple_answers, .one_answer").addClass("hidden")
     $('#type_input option').each( ->
-      if($(this).val() == "#{@test.typeinput}")
+      if $(this).val() == "#{@test.typeinput}"
         $(this).prop("selected", true)
-    )
+      )
+    if "#{@test.typeinput}" == "textInput"
+      $(".one_answer").removeClass("hidden")
+      value = "#{@test.answers.any? ? @test.answers[0]["A"] : ""}" 
+      $(".one_answer input").val(value)
   :javascript
     var answ;
     var right_answer;
